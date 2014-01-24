@@ -29,7 +29,6 @@ class TestRecursive extends TestCase with AssertionsForJUnit {
    * }
    */
 
-
   val s =
     Sequence(
       Assignment(Variable("n"), New(ListNode)),
@@ -63,18 +62,18 @@ class TestRecursive extends TestCase with AssertionsForJUnit {
     assert(store("n").get.left.get === 0)
     assert(store("s").get.left.get === 17)
     assert(store("h").
-    		get.right.get.fields("value").get.left.get === 2)
+      get.right.get.fields("value").get.left.get === 2)
     assert(store("h").
-    		get.right.get.fields("next").
-    		get.right.get.fields("value").get.left.get === 3)
+      get.right.get.fields("next").
+      get.right.get.fields("value").get.left.get === 3)
     assert(store("h").
-    		get.right.get.fields("next").
-    		get.right.get.fields("next").
-    		get.right.get.fields("value").get.left.get === 5)
+      get.right.get.fields("next").
+      get.right.get.fields("next").
+      get.right.get.fields("value").get.left.get === 5)
     assert(store("h").
-    		get.right.get.fields("next").
-    		get.right.get.fields("next").
-    		get.right.get.fields("next").
-    		get.right.get.fields("value").get.left.get === 7)
+      get.right.get.fields("next").
+      get.right.get.fields("next").
+      get.right.get.fields("next").
+      get.right.get.fields("value").get.left.get === 7)
   }
 }

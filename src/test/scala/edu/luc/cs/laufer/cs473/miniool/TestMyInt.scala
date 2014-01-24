@@ -5,7 +5,7 @@ import org.scalatest.junit.AssertionsForJUnit
 
 class TestMyInt extends TestCase with AssertionsForJUnit {
 
-/*
+  /*
  * class myInt {
  *     var value;
  *     init(that) { value = that; }
@@ -26,27 +26,27 @@ class TestMyInt extends TestCase with AssertionsForJUnit {
  * }
  */
 
-val MyInt: Clazz = new Clazz(
-  Seq("value"),
-  Seq(
-    "init" -> (Seq(),
-      Assignment(Selection(Variable("this"), "value"), Variable("0"))),
-    "itimes" -> (Seq(),
-   	  If(Variable("0"),
-		Plus(
-		  Selection(Variable("this"), "value"),
-		  Message(Variable("this"), "itimes", Minus(Variable("0"), Constant(1)))),
-		Constant(0)
-      )),
-    "plus" -> (Seq("result"),
-      Sequence(
-    	Assignment(Variable("result"), New(MyInt)),
-    	Message(Variable("result"), "init", Plus(Selection(Variable("this"), "value"), Variable("0"))),
-    	Variable("result")
-    ))
+  val MyInt: Clazz = new Clazz(
+    Seq("value"),
+    Seq(
+      "init" -> (Seq(),
+        Assignment(Selection(Variable("this"), "value"), Variable("0"))),
+      "itimes" -> (Seq(),
+        If(Variable("0"),
+          Plus(
+            Selection(Variable("this"), "value"),
+            Message(Variable("this"), "itimes", Minus(Variable("0"), Constant(1)))),
+          Constant(0)
+        )),
+      "plus" -> (Seq("result"),
+        Sequence(
+          Assignment(Variable("result"), New(MyInt)),
+          Message(Variable("result"), "init", Plus(Selection(Variable("this"), "value"), Variable("0"))),
+          Variable("result")
+        ))
     // TODO your job: implement the remaining methods
     // hint: use "itimes" to implement "times"
-  ))
+    ))
 
   /*
    * var u, v, x, y, z;

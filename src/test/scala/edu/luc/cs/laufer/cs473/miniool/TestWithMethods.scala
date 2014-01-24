@@ -5,7 +5,7 @@ import org.scalatest.junit.AssertionsForJUnit
 
 class TestWithMethods extends TestCase with AssertionsForJUnit {
 
-/*
+  /*
   class MyInt {
     public Object value;
     public Object set(Object arg0) {
@@ -18,39 +18,39 @@ class TestWithMethods extends TestCase with AssertionsForJUnit {
   }
  */
 
-val MyInt: Clazz = new Clazz(
-  Seq("value"),
-  Seq(
-    "echo" ->
-      (Seq(), Variable("0")),
-    "always7" ->
-      (Seq(), Message(Variable("this"), "echo", Constant(7))),
-    "set" ->
-      (Seq(), Assignment(Selection(Variable("this"), "value"), Variable("0"))),
-    "get" ->
-      (Seq(), Selection(Variable("this"), "value")),
-    "times" ->
-      (Seq("result"), Sequence(
-        Assignment(Variable("result"), Constant(0)),
-        While(Variable("0"), Sequence(
-          Assignment(Variable("0"), Minus(Variable("0"), Constant(1))),
-          Assignment(Variable("result"), Plus(Variable("result"), Selection(Variable("this"), "value")))
+  val MyInt: Clazz = new Clazz(
+    Seq("value"),
+    Seq(
+      "echo" ->
+        (Seq(), Variable("0")),
+      "always7" ->
+        (Seq(), Message(Variable("this"), "echo", Constant(7))),
+      "set" ->
+        (Seq(), Assignment(Selection(Variable("this"), "value"), Variable("0"))),
+      "get" ->
+        (Seq(), Selection(Variable("this"), "value")),
+      "times" ->
+        (Seq("result"), Sequence(
+          Assignment(Variable("result"), Constant(0)),
+          While(Variable("0"), Sequence(
+            Assignment(Variable("0"), Minus(Variable("0"), Constant(1))),
+            Assignment(Variable("result"), Plus(Variable("result"), Selection(Variable("this"), "value")))
+          )),
+          Variable("result")
         )),
-        Variable("result")
-      )),
-    "fact" ->
-      (Seq("result", "recurse", "aux"), Sequence(
-        Assignment(Variable("recurse"), Selection(Variable("this"), "value")),
-        Assignment(Variable("result"), Constant(1)),
-        While(Variable("recurse"), Sequence(
-          Assignment(Variable("recurse"), Constant(0)),
-          Assignment(Variable("aux"), New(MyInt)),
-          Message(Variable("aux"), "set", Minus(Selection(Variable("this"), "value"), Constant(1))),
-          Assignment(Variable("result"), Message(Variable("this"), "times", Message(Variable("aux"), "fact")))
-        )),
-        Variable("result")
-      ))
-  ))
+      "fact" ->
+        (Seq("result", "recurse", "aux"), Sequence(
+          Assignment(Variable("recurse"), Selection(Variable("this"), "value")),
+          Assignment(Variable("result"), Constant(1)),
+          While(Variable("recurse"), Sequence(
+            Assignment(Variable("recurse"), Constant(0)),
+            Assignment(Variable("aux"), New(MyInt)),
+            Message(Variable("aux"), "set", Minus(Selection(Variable("this"), "value"), Constant(1))),
+            Assignment(Variable("result"), Message(Variable("this"), "times", Message(Variable("aux"), "fact")))
+          )),
+          Variable("result")
+        ))
+    ))
 
   /*
    * var a, b, d, e, f, g;

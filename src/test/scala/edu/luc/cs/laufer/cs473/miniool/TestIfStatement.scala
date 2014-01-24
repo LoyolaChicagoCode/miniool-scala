@@ -12,9 +12,9 @@ class TestIfStatement extends TestCase with AssertionsForJUnit {
   )
 
   val s =
-	Sequence(
-	  Assignment(Variable("x"), If(Plus(Variable("y"), Constant(3)), Constant(7), Constant(8))), 
-	  Assignment(Variable("y"), If(Variable("r"), Constant(5), Constant(6))) 
+    Sequence(
+      Assignment(Variable("x"), If(Plus(Variable("y"), Constant(3)), Constant(7), Constant(8))),
+      Assignment(Variable("y"), If(Variable("r"), Constant(5), Constant(6)))
     )
 
   def testMain() {

@@ -5,7 +5,7 @@ import org.scalatest.junit.AssertionsForJUnit
 
 class TestFibonacci extends TestCase with AssertionsForJUnit {
 
-/*
+  /*
  * class myFib {
  *     value;
  *     init(that) {
@@ -25,16 +25,16 @@ class TestFibonacci extends TestCase with AssertionsForJUnit {
  * }
  */
 
-val MyFib = new Clazz(
-  Seq("value"),
-  Seq(
-    "init" -> (Seq(),
-      Assignment(Selection(Variable("this"), "value"), Variable("0"))),
-    "helpFib" -> (Seq(),
-    // TODO your job
-    Constant(1)),
-    "fib" -> (Seq(), Message(Variable("this"), "helpFib", Constant(1), Constant(1), Constant(0)))
-  ))
+  val MyFib = new Clazz(
+    Seq("value"),
+    Seq(
+      "init" -> (Seq(),
+        Assignment(Selection(Variable("this"), "value"), Variable("0"))),
+      "helpFib" -> (Seq(),
+        // TODO your job
+        Constant(1)),
+      "fib" -> (Seq(), Message(Variable("this"), "helpFib", Constant(1), Constant(1), Constant(0)))
+    ))
 
   /*
    * var u, v, w, x, y, z;
