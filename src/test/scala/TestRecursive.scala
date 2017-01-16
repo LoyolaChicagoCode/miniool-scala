@@ -45,7 +45,8 @@ class TestRecursive extends TestCase with AssertionsForJUnit {
       Assignment(Selection(Variable("n"), "value"), Constant(7)),
       Assignment(Selection(Variable("n"), "next"), Constant(0)),
       Assignment(Variable("n"), Variable("h")),
-      While(Variable("n"),
+      While(
+        Variable("n"),
         Sequence(
           Assignment(Variable("s"), Plus(Variable("s"), Selection(Variable("n"), "value"))),
           Assignment(Variable("n"), Selection(Variable("n"), "next"))

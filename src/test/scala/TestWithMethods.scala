@@ -50,7 +50,8 @@ class TestWithMethods extends TestCase with AssertionsForJUnit {
           )),
           Variable("result")
         ))
-    ))
+    )
+  )
 
   /*
    * var a, b, d, e, f, g;

@@ -67,9 +67,9 @@ case class Instance(zuper: Option[Instance], fields: Map[String, Cell], methods:
 object Execute {
 
   def apply(store: Store)(s: Statement): Cell = s match {
-    case Constant(value)   => Cell(Left(value))
+    case Constant(value) => Cell(Left(value))
     case Plus(left, right) => binaryOperation(store, left, right, _ + _)
-    case Variable(name)    => store(name)
+    case Variable(name) => store(name)
     case Assignment(left, right) => {
       val lvalue = apply(store)(left)
       val rvalue = apply(store)(right)
@@ -100,8 +100,7 @@ object Execute {
       // then look for the field in the static scope of the method
       if (!store.contains("this") || rec.get.right.get != store("this").get.right.get) {
         rec.get.right.get.getField(field)
-      }
-      else {
+      } else {
         store("scope").get.right.get.getField(field)
       }
     }
