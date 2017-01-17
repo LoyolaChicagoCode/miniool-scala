@@ -12,7 +12,8 @@ class TestImperative extends TestCase with AssertionsForJUnit {
   )
 
   val s =
-    While(Variable("y"),
+    While(
+      Variable("y"),
       Sequence(
         Assignment(Variable("r"), Plus(Variable("r"), Variable("x"))),
         Assignment(Variable("y"), Minus(Variable("y"), Constant(1)))

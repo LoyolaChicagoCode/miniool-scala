@@ -19,9 +19,13 @@ class TestSimple extends TestCase with AssertionsForJUnit {
       Assignment(Selection(Variable("r"), "course1"), New(studentCourseRecord)),
       Assignment(Selection(Selection(Variable("r"), "course1"), "firstExamScore"), Constant(25)),
       Assignment(Selection(Selection(Variable("r"), "course1"), "secondExamScore"), Constant(35)),
-      Assignment(Selection(Selection(Variable("r"), "course1"), "totalScore"),
-        Plus(Selection(Selection(Variable("r"), "course1"), "firstExamScore"),
-          Selection(Selection(Variable("r"), "course1"), "secondExamScore"))),
+      Assignment(
+        Selection(Selection(Variable("r"), "course1"), "totalScore"),
+        Plus(
+          Selection(Selection(Variable("r"), "course1"), "firstExamScore"),
+          Selection(Selection(Variable("r"), "course1"), "secondExamScore")
+        )
+      ),
       Assignment(Selection(Variable("r"), "course2"), Selection(Variable("r"), "course1")),
       Assignment(Variable("q"), Selection(Selection(Variable("r"), "course2"), "totalScore")),
       Assignment(Selection(Selection(Variable("r"), "course1"), "firstExamScore"), Constant(45))
@@ -51,8 +55,8 @@ class TestSimple extends TestCase with AssertionsForJUnit {
           "firstExamScore" -> Cell(Left(45)),
           "secondExamScore" -> Cell(Left(35)),
           "totalScore" -> Cell(Left(60))
-        ), Map())))), Map()))
-      )
+        ), Map())))
+      ), Map())))
     )
     Execute(store)(s)
     assert(store === store2)
