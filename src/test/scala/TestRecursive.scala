@@ -2,6 +2,7 @@ package edu.luc.cs.laufer.cs473.miniool
 
 import junit.framework.TestCase
 import org.scalatest.junit.AssertionsForJUnit
+import scala.language.postfixOps
 
 class TestRecursive extends TestCase with AssertionsForJUnit {
 

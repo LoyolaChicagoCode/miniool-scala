@@ -100,8 +100,7 @@ object Execute {
       // then look for the field in the static scope of the method
       if (!store.contains("this") || rec.get.right.get != store("this").get.right.get) {
         rec.get.right.get.getField(field)
-      }
-      else {
+      } else {
         store("scope").get.right.get.getField(field)
       }
     }
