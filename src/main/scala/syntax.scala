@@ -1,34 +1,34 @@
 package edu.luc.cs.laufer.cs473.miniool
 
-import SyntacticTypes.{ Method, MethodBinding }
+import SyntacticTypes.{Method, MethodBinding}
 
 object SyntacticTypes {
   /**
-   * A method has a list of local variables and a body.
-   */
+    * A method has a list of local variables and a body.
+    */
   type Method = (Seq[String], Statement)
   /**
-   * A method binding is an entry in a map from method names to methods.
-   */
+    * A method binding is an entry in a map from method names to methods.
+    */
   type MethodBinding = (String, Method)
 }
 
 /**
- * An abstract superclass for concrete Statement implementation classes.
- */
+  * An abstract superclass for concrete Statement implementation classes.
+  */
 abstract class Statement
 
 /**
- * A binary statement with two non-null children.
- */
+  * A binary statement with two non-null children.
+  */
 abstract class BinaryStatement(left: Statement, right: Statement) extends Statement {
   require(left != null)
   require(right != null)
 }
 
 /**
- * Syntax for applicative (side-effect-free) statements.
- */
+  * Syntax for applicative (side-effect-free) statements.
+  */
 case class Constant(value: Int) extends Statement
 case class Plus(left: Statement, right: Statement) extends BinaryStatement(left, right)
 case class Minus(left: Statement, right: Statement) extends BinaryStatement(left, right)
@@ -36,9 +36,9 @@ case class Times(left: Statement, right: Statement) extends BinaryStatement(left
 case class Div(left: Statement, right: Statement) extends BinaryStatement(left, right)
 
 /**
- * Syntax for imperative statements, that is, those that are interesting because of their
- * side effects.
- */
+  * Syntax for imperative statements, that is, those that are interesting because of their
+  * side effects.
+  */
 case class Variable(name: String) extends Statement {
   require(name != null)
 }
@@ -55,11 +55,11 @@ case class If(guard: Statement, thenBranch: Statement, elseBranch: Statement) ex
 }
 
 /**
- * Syntax for statements for creating and using records.
- * New is implemented as a non-case class to allow the companion object
- * to hide the function behind a by-name argument and add back the
- * syntactic sugar to make it look like a case class.
- */
+  * Syntax for statements for creating and using records.
+  * New is implemented as a non-case class to allow the companion object
+  * to hide the function behind a by-name argument and add back the
+  * syntactic sugar to make it look like a case class.
+  */
 class New(c: () => Clazz) extends Statement {
   require(c != null)
   val clazz = c
@@ -83,11 +83,11 @@ case class Message(receiver: Statement, method: String, arguments: Statement*) e
 }
 
 /**
- * Syntax for classes. Not part of the Statement hierarchy
- * because they appear only as arguments to New Statements.
- * Note that methods are defined in terms of their local variables
- * and their body; arguments are numbered instead of named.
- */
+  * Syntax for classes. Not part of the Statement hierarchy
+  * because they appear only as arguments to New Statements.
+  * Note that methods are defined in terms of their local variables
+  * and their body; arguments are numbered instead of named.
+  */
 case class Clazz(zuper: Option[Clazz], fields: Seq[String], methods: Seq[MethodBinding]) {
   require(fields != null)
   require(!fields.contains(null))

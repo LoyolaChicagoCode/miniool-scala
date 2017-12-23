@@ -9,40 +9,40 @@ import RuntimeTypes._
 
 object RuntimeTypes {
   /**
-   * A run-time value is either a number or an Instance (object).
-   */
+    * A run-time value is either a number or an Instance (object).
+    */
   type Value = Either[Int, Instance]
   /**
-   * A memory store is a mapping from variable names to storage Cells.
-   */
+    * A memory store is a mapping from variable names to storage Cells.
+    */
   type Store = Map[String, Cell]
   /**
-   * A scoped method is an object in which the method is defined
-   * along with the method itself.
-   */
+    * A scoped method is an object in which the method is defined
+    * along with the method itself.
+    */
   type ScopedMethod = (Instance, (Seq[String], Statement))
 }
 
 /**
- * A cell for storing a value (either a number or an object).
- */
+  * A cell for storing a value (either a number or an object).
+  */
 case class Cell(var value: Value) {
   def get = value
   def set(value: Value) = { this.value = value; this }
 }
 
 /**
- * A companion object defining a useful Cell instance.
- */
+  * A companion object defining a useful Cell instance.
+  */
 object Cell {
   def apply(i: Int): Cell = Cell(Left(i)) // Left -> number, Right -> object
   val NULL = Cell(0)
 }
 
 /**
- * An object (instance) has an optional superclass instance, a map from field
- * names to variables, and a map from method names to methods.
- */
+  * An object (instance) has an optional superclass instance, a map from field
+  * names to variables, and a map from method names to methods.
+  */
 case class Instance(zuper: Option[Instance], fields: Map[String, Cell], methods: Map[String, Method]) {
   require(zuper != null)
   require(fields != null)
@@ -60,10 +60,10 @@ case class Instance(zuper: Option[Instance], fields: Map[String, Cell], methods:
 }
 
 /**
- * An interpreter for expressions and statements.
- * It evaluates a Statement down to a Cell (l-value) containing the result.
- * If desired, the result (r-value) can be accessed in an additional step.
- */
+  * An interpreter for expressions and statements.
+  * It evaluates a Statement down to a Cell (l-value) containing the result.
+  * If desired, the result (r-value) can be accessed in an additional step.
+  */
 object Execute {
 
   def apply(store: Store)(s: Statement): Cell = s match {
