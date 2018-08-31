@@ -8,5 +8,5 @@ scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature")
 
 libraryDependencies ++= Seq(
   "com.novocode"  %  "junit-interface" % "0.11"  % Test,  // required only for plain JUnit testing
-  "org.scalatest" %% "scalatest"       % "3.0.1" % Test
+  "org.scalatest" %% "scalatest"       % "3.0.5" % Test
 )
