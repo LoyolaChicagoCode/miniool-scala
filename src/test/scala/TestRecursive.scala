@@ -1,10 +1,9 @@
 package edu.luc.cs.laufer.cs473.miniool
 
-import junit.framework.TestCase
-import org.scalatest.junit.AssertionsForJUnit
+import org.scalatest.funsuite.AnyFunSuite
 import scala.language.postfixOps
 
-class TestRecursive extends TestCase with AssertionsForJUnit {
+class TestRecursive extends AnyFunSuite {
 
   val store = Map[String, Cell](
     "n" -> Cell(0),
@@ -55,7 +54,7 @@ class TestRecursive extends TestCase with AssertionsForJUnit {
       )
     )
 
-  def testMain() {
+  test("Recursive") {
     Execute(store)(s)
     // Map(n -> Cell(Left(0)),
     //     h -> Cell(Right(Instance(None,Map(value -> Cell(Left(2)), next -> Cell(Right(Instance(None,Map(value -> Cell(Left(3)), next -> Cell(Right(Instance(None,Map(value -> Cell(Left(5)), next -> Cell(Right(Instance(None,Map(value -> Cell(Left(7)), next -> Cell(Left(0))),Map())))),Map())))),Map())))),Map()))),

@@ -1,9 +1,8 @@
 package edu.luc.cs.laufer.cs473.miniool
 
-import junit.framework.TestCase
-import org.scalatest.junit.AssertionsForJUnit
+import org.scalatest.funsuite.AnyFunSuite
 
-class TestSimple extends TestCase with AssertionsForJUnit {
+class TestSimple extends AnyFunSuite {
 
   val studentCourseRecord = new Clazz("firstExamScore", "secondExamScore", "totalScore")
   val studentSemRecord = new Clazz("course1", "course2")
@@ -31,7 +30,7 @@ class TestSimple extends TestCase with AssertionsForJUnit {
       Assignment(Selection(Selection(Variable("r"), "course1"), "firstExamScore"), Constant(45))
     )
 
-  //  def testMain() {
+  //  test("Simple") {
   //    assert(store - "q" - "r" isEmpty)
   //    assert(store("q").get.left.get === 0)
   //    assert(store("r").get.left.get === 0)
@@ -42,7 +41,7 @@ class TestSimple extends TestCase with AssertionsForJUnit {
   //    assert(store("r").get.right.get.getField("course1").get.right.get.getField("firstExamScore").get.left.get === 45)
   //  }
 
-  def testMain2() {
+  test("Simple2") {
     val store2 = Map[String, Cell](
       "q" -> Cell(60),
       "r" -> Cell(Right(Instance(None, Map(

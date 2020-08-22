@@ -1,9 +1,8 @@
 package edu.luc.cs.laufer.cs473.miniool
 
-import junit.framework.TestCase
-import org.scalatest.junit.AssertionsForJUnit
+import org.scalatest.funsuite.AnyFunSuite
 
-class TestWithInheritedFields extends TestCase with AssertionsForJUnit {
+class TestWithInheritedFields extends AnyFunSuite {
 
   /*
     class C {
@@ -70,7 +69,7 @@ class TestWithInheritedFields extends TestCase with AssertionsForJUnit {
     Assignment(Variable("z"), Message(Variable("d"), "get3"))
   )
 
-  def testMain() {
+  test("InheritedFields") {
     Execute(store)(c)
     assert(store("u").get.left.get === 7)
     assert(store("v").get.left.get === 8)

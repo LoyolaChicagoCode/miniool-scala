@@ -1,9 +1,8 @@
 package edu.luc.cs.laufer.cs473.miniool
 
-import junit.framework.TestCase
-import org.scalatest.junit.AssertionsForJUnit
+import org.scalatest.funsuite.AnyFunSuite
 
-class TestFibonacci extends TestCase with AssertionsForJUnit {
+class TestFibonacci extends AnyFunSuite {
 
   /*
  * class myFib {
@@ -76,7 +75,7 @@ class TestFibonacci extends TestCase with AssertionsForJUnit {
     Assignment(Variable("u"), Message(Variable("y"), "fib"))
   )
 
-  def testMain() {
+  test("Fibonacci") {
     Execute(store)(c)
     assert(store("v").get.left.get === 5)
     assert(store("w").get.left.get === 21)

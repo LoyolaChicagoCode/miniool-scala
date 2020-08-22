@@ -1,9 +1,9 @@
 package edu.luc.cs.laufer.cs473.miniool
 
-import junit.framework.TestCase
-import org.scalatest.junit.AssertionsForJUnit
+import scala.language.postfixOps
+import org.scalatest.funsuite.AnyFunSuite
 
-class TestWithInheritance extends TestCase with AssertionsForJUnit {
+class TestWithInheritance extends AnyFunSuite {
 
   /*
     abstract class C {
@@ -65,7 +65,7 @@ class TestWithInheritance extends TestCase with AssertionsForJUnit {
     Assignment(Variable("y"), Message(Variable("e"), "world"))
   )
 
-  def testMain() {
+  test("Inheritance") {
     Execute(store)(c)
     assert(store("u").get.left.get === 1)
     assert(store("v").get.left.get === 2)

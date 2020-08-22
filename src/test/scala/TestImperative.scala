@@ -1,10 +1,9 @@
 package edu.luc.cs.laufer.cs473.miniool
 
-import junit.framework.TestCase
-import org.scalatest.junit.AssertionsForJUnit
+import org.scalatest.funsuite.AnyFunSuite
 import scala.language.postfixOps
 
-class TestImperative extends TestCase with AssertionsForJUnit {
+class TestImperative extends AnyFunSuite {
 
   val store = Map[String, Cell](
     "x" -> Cell(2),
@@ -21,7 +20,7 @@ class TestImperative extends TestCase with AssertionsForJUnit {
       )
     )
 
-  def testMain() {
+  test("Imperative") {
     assert(store - "x" - "y" - "r" isEmpty)
     assert(store("x").get.left.get === 2)
     assert(store("y").get.left.get === 3)

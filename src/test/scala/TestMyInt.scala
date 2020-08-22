@@ -1,9 +1,8 @@
 package edu.luc.cs.laufer.cs473.miniool
 
-import junit.framework.TestCase
-import org.scalatest.junit.AssertionsForJUnit
+import org.scalatest.funsuite.AnyFunSuite
 
-class TestMyInt extends TestCase with AssertionsForJUnit {
+class TestMyInt extends AnyFunSuite {
 
   /*
  * class myInt {
@@ -89,7 +88,7 @@ class TestMyInt extends TestCase with AssertionsForJUnit {
     Assignment(Variable("v"), Constant(0))
   )
 
-  def testMain() {
+  test("MyInt") {
     Execute(store)(c)
     assert(store("y").get.left.get === 35)
     assert(store("u").get.left.get === 48)

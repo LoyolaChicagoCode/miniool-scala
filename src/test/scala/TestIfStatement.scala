@@ -1,10 +1,9 @@
 package edu.luc.cs.laufer.cs473.miniool
 
-import junit.framework.TestCase
-import org.scalatest.junit.AssertionsForJUnit
+import org.scalatest.funsuite.AnyFunSuite
 import scala.language.postfixOps
 
-class TestIfStatement extends TestCase with AssertionsForJUnit {
+class TestIfStatement extends AnyFunSuite {
 
   val store = Map[String, Cell](
     "x" -> Cell(2),
@@ -18,7 +17,7 @@ class TestIfStatement extends TestCase with AssertionsForJUnit {
       Assignment(Variable("y"), If(Variable("r"), Constant(5), Constant(6)))
     )
 
-  def testMain() {
+  test("IfStatement") {
     Execute(store)(s)
     assert(store - "x" - "y" - "r" isEmpty)
     assert(store("x").get.left.get === 7)
