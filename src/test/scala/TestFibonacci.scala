@@ -77,8 +77,8 @@ class TestFibonacci extends AnyFunSuite {
 
   test("Fibonacci") {
     Execute(store)(c)
-    assert(store("v").get.left.get === 5)
-    assert(store("w").get.left.get === 21)
-    assert(store("u").get.left.get === 2584)
+    assert(store("v").get.left.toOption.get === 5)
+    assert(store("w").get.left.toOption.get === 21)
+    assert(store("u").get.left.toOption.get === 2584)
   }
 }

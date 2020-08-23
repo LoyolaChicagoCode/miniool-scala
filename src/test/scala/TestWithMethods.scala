@@ -94,12 +94,12 @@ class TestWithMethods extends AnyFunSuite {
 
   test("Methods") {
     Execute(store)(c)
-    assert(store("b").get.left.get === 35)
-    assert(store("d").get.left.get === 120)
-    assert(store("f").get.left.get === 30)
-    assert(store("g").get.left.get === 720)
-    assert(store("h").get.left.get === 12)
-    assert(store("i").get.left.get === 7)
-    assert(store("j").get.left.get === 6)
+    assert(store("b").get.left.toOption.get === 35)
+    assert(store("d").get.left.toOption.get === 120)
+    assert(store("f").get.left.toOption.get === 30)
+    assert(store("g").get.left.toOption.get === 720)
+    assert(store("h").get.left.toOption.get === 12)
+    assert(store("i").get.left.toOption.get === 7)
+    assert(store("j").get.left.toOption.get === 6)
   }
 }

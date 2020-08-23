@@ -22,14 +22,14 @@ class TestImperative extends AnyFunSuite {
 
   test("Imperative") {
     assert(store - "x" - "y" - "r" isEmpty)
-    assert(store("x").get.left.get === 2)
-    assert(store("y").get.left.get === 3)
-    assert(store("r").get.left.get === 0)
+    assert(store("x").get.left.toOption.get === 2)
+    assert(store("y").get.left.toOption.get === 3)
+    assert(store("r").get.left.toOption.get === 0)
     Execute(store)(s)
     // Map(x -> Cell(Left(2)), y -> Cell(Left(0)), r -> Cell(Left(6)))
     assert(store - "x" - "y" - "r" isEmpty)
-    assert(store("x").get.left.get === 2)
-    assert(store("y").get.left.get === 0)
-    assert(store("r").get.left.get === 6)
+    assert(store("x").get.left.toOption.get === 2)
+    assert(store("y").get.left.toOption.get === 0)
+    assert(store("r").get.left.toOption.get === 6)
   }
 }

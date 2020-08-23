@@ -70,53 +70,50 @@ object Execute {
     case Constant(value)   => Cell(Left(value))
     case Plus(left, right) => binaryOperation(store, left, right, _ + _)
     case Variable(name)    => store(name)
-    case Assignment(left, right) => {
+    case Assignment(left, right) =>
       val lvalue = apply(store)(left)
       val rvalue = apply(store)(right)
       lvalue.set(rvalue.get)
-    }
     case Sequence(statements @ _*) =>
       statements.foldLeft(Cell.NULL)((c, s) => apply(store)(s))
     case While(guard, body) => {
       var gvalue = apply(store)(guard)
-      while (gvalue.get.isRight || gvalue.get.left.get != 0) {
+      while (gvalue.get.isRight || gvalue.get.left.toOption.get != 0) {
         apply(store)(body)
         gvalue = apply(store)(guard)
       }
       Cell.NULL
     }
-    case New(Clazz(zuper, fields, methods)) => {
+    case New(Clazz(zuper, fields, methods)) =>
       // create an object based on the list of field names and methods
       val fs = Map(fields.map(field => (field, Cell(0))): _*)
       val ms = Map(methods: _*)
-      val z = zuper map ((z: Clazz) => apply(Map.empty)(New(z)).get.right.get)
+      val z = zuper map ((z: Clazz) => apply(Map.empty)(New(z)).get.toOption.get)
       Cell(Right(Instance(z, fs, ms)))
-    }
-    case Selection(receiver, field) => {
+    case Selection(receiver, field) =>
       // assume the expression evaluates to a record (.right)
       // and choose the desired field
       val rec = apply(store)(receiver)
       // if this selection is on the receiver of the current method,
       // then look for the field in the static scope of the method
-      if (!store.contains("this") || rec.get.right.get != store("this").get.right.get) {
-        rec.get.right.get.getField(field)
+      if (!store.contains("this") || rec.get.toOption.get != store("this").get.toOption.get) {
+        rec.get.toOption.get.getField(field)
       } else {
-        store("scope").get.right.get.getField(field)
+        store("scope").get.toOption.get.getField(field)
       }
-    }
-    case Message(receiver, method, arguments @ _*) => {
+    case Message(receiver, method, arguments @ _*) =>
       // evaluate receiver expression to a Cell containing an Instance
       val rec = apply(store)(receiver)
       // look up method in the Instance's second component (method table)
       // this gives you the subobject of the Instance corresponding to
       // the static scope of the method, as well as the method's arguments and body
-      val (scope, (vars, meth)) = rec.get.right.get.getScopedMethod(method)
+      val (scope, (vars, meth)) = rec.get.toOption.get.getScopedMethod(method)
       // set up static superclass scope for method
       val zup = if (scope.zuper.isDefined) Cell(Right(scope.zuper.get)) else Cell.NULL
       // evaluate the arguments
       val args = arguments.map(apply(store))
       // create argument bindings "0" -> arg(0), "1" -> arg(1), etc.
-      val argBindings = (0 until args.length) map (_.toString) zip args
+      val argBindings = args.indices map (_.toString) zip args
       // create bindings for the local variables
       val localBindings = vars map (field => (field, Cell(0)))
       // augment the store with these new bindings
@@ -127,12 +124,11 @@ object Execute {
       // finally execute the resulting Statement in the augmented store
       // (note that this automatically returns the result if there is one)
       apply(storeWithBindings)(meth)
-    }
   }
 
   def binaryOperation(store: Store, left: Statement, right: Statement, operator: (Int, Int) => Int): Cell = {
-    val l: Int = apply(store)(left).get.left.get
-    val r: Int = apply(store)(right).get.left.get
+    val l: Int = apply(store)(left).get.left.toOption.get
+    val r: Int = apply(store)(right).get.left.toOption.get
     Cell(Left(operator(l, r)))
   }
 }
