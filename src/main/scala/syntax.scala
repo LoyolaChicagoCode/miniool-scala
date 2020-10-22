@@ -1,4 +1,4 @@
-package edu.luc.cs.laufer.cs473.miniool
+package edu.luc.cs.laufer.cs371.miniool
 
 import SyntacticTypes.{Method, MethodBinding}
 

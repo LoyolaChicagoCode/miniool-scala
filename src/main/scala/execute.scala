@@ -1,4 +1,4 @@
-package edu.luc.cs.laufer.cs473.miniool
+package edu.luc.cs.laufer.cs371.miniool
 
 // TODO your job: implement the cases for Minus, Times, Div, and If below
 // TODO in addition, implement field and method lookup in Instance in

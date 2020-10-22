@@ -1,4 +1,4 @@
-package edu.luc.cs.laufer.cs473.miniool
+package edu.luc.cs.laufer.cs371.miniool
 
 import org.scalatest.funsuite.AnyFunSuite
 import scala.language.postfixOps
