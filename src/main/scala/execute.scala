@@ -44,11 +44,6 @@ object Cell {
   * names to variables, and a map from method names to methods.
   */
 case class Instance(zuper: Option[Instance], fields: Map[String, Cell], methods: Map[String, Method]) {
-  require(zuper != null)
-  require(fields != null)
-  require(!fields.contains(null))
-  require(methods != null)
-  require(!methods.contains(null))
 
   def getField(name: String): Cell =
     // TODO: your job: replace this result with a meaningful field lookup
@@ -78,7 +73,7 @@ object Execute {
       statements.foldLeft(Cell.NULL)((c, s) => apply(store)(s))
     case While(guard, body) => {
       var gvalue = apply(store)(guard)
-      while (gvalue.get.isRight || gvalue.get.left.toOption.get != 0) {
+      while gvalue.get.isRight || gvalue.get.left.toOption.get != 0 do {
         apply(store)(body)
         gvalue = apply(store)(guard)
       }
@@ -96,7 +91,7 @@ object Execute {
       val rec = apply(store)(receiver)
       // if this selection is on the receiver of the current method,
       // then look for the field in the static scope of the method
-      if (!store.contains("this") || rec.get.toOption.get != store("this").get.toOption.get) {
+      if !store.contains("this") || rec.get.toOption.get != store("this").get.toOption.get then {
         rec.get.toOption.get.getField(field)
       } else {
         store("scope").get.toOption.get.getField(field)
@@ -109,7 +104,7 @@ object Execute {
       // the static scope of the method, as well as the method's arguments and body
       val (scope, (vars, meth)) = rec.get.toOption.get.getScopedMethod(method)
       // set up static superclass scope for method
-      val zup = if (scope.zuper.isDefined) Cell(Right(scope.zuper.get)) else Cell.NULL
+      val zup = if scope.zuper.isDefined then Cell(Right(scope.zuper.get)) else Cell.NULL
       // evaluate the arguments
       val args = arguments.map(apply(store))
       // create argument bindings "0" -> arg(0), "1" -> arg(1), etc.

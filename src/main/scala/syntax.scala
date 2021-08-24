@@ -21,10 +21,7 @@ abstract class Statement
 /**
   * A binary statement with two non-null children.
   */
-abstract class BinaryStatement(left: Statement, right: Statement) extends Statement {
-  require(left != null)
-  require(right != null)
-}
+abstract class BinaryStatement(left: Statement, right: Statement) extends Statement
 
 /**
   * Syntax for applicative (side-effect-free) statements.
@@ -39,20 +36,11 @@ case class Div(left: Statement, right: Statement) extends BinaryStatement(left, 
   * Syntax for imperative statements, that is, those that are interesting because of their
   * side effects.
   */
-case class Variable(name: String) extends Statement {
-  require(name != null)
-}
-case class Sequence(statements: Statement*) extends Statement {
-  require(statements != null)
-  require(!statements.contains(null))
-}
+case class Variable(name: String) extends Statement
+case class Sequence(statements: Statement*) extends Statement
 case class While(guard: Statement, body: Statement) extends BinaryStatement(guard, body)
 case class Assignment(left: Statement, right: Statement) extends BinaryStatement(left, right)
-case class If(guard: Statement, thenBranch: Statement, elseBranch: Statement) extends Statement {
-  require(guard != null)
-  require(thenBranch != null)
-  require(elseBranch != null)
-}
+case class If(guard: Statement, thenBranch: Statement, elseBranch: Statement) extends Statement
 
 /**
   * Syntax for statements for creating and using records.
@@ -60,10 +48,7 @@ case class If(guard: Statement, thenBranch: Statement, elseBranch: Statement) ex
   * to hide the function behind a by-name argument and add back the
   * syntactic sugar to make it look like a case class.
   */
-class New(c: () => Clazz) extends Statement {
-  require(c != null)
-  val clazz = c
-}
+class New(val clazz: () => Clazz) extends Statement
 object New {
   def apply(clazz: => Clazz) = new New(() => clazz)
   def unapply(s: Statement) = s match {
@@ -71,16 +56,8 @@ object New {
     case _      => None
   }
 }
-case class Selection(receiver: Statement, field: String) extends Statement {
-  require(receiver != null)
-  require(field != null)
-}
-case class Message(receiver: Statement, method: String, arguments: Statement*) extends Statement {
-  require(receiver != null)
-  require(method != null)
-  require(arguments != null)
-  require(!arguments.contains(null))
-}
+case class Selection(receiver: Statement, field: String) extends Statement
+case class Message(receiver: Statement, method: String, arguments: Statement*) extends Statement
 
 /**
   * Syntax for classes. Not part of the Statement hierarchy
@@ -89,9 +66,7 @@ case class Message(receiver: Statement, method: String, arguments: Statement*) e
   * and their body; arguments are numbered instead of named.
   */
 case class Clazz(zuper: Option[Clazz], fields: Seq[String], methods: Seq[MethodBinding]) {
-  require(fields != null)
   require(!fields.contains(null))
-  require(methods != null)
   require(!methods.contains(null))
 
   def this(zuper: Option[Clazz], fields: String*) = this(zuper, fields, Seq())
