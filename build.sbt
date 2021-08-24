@@ -4,7 +4,7 @@ version := "0.2"
 
 scalaVersion := "3.0.1"
 
-scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature")
+scalacOptions ++= Seq("-unchecked", "-Yexplicit-nulls", "-deprecation", "-feature")
 
 libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest"       % "3.2.9" % Test
