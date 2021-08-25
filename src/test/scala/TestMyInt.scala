@@ -90,8 +90,8 @@ class TestMyInt extends AnyFunSuite {
 
   test("MyInt") {
     Execute(store)(c)
-    assert(store("y").get.left.toOption.get === 35)
-    assert(store("u").get.left.toOption.get === 48)
-    assert(store("v").get.left.toOption.get === 41)
+    assert(store("y").get.left.toOption.get == 35)
+    assert(store("u").get.left.toOption.get == 48)
+    assert(store("v").get.left.toOption.get == 41)
   }
 }

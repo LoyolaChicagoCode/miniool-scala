@@ -67,10 +67,10 @@ class TestWithInheritance extends AnyFunSuite {
 
   test("Inheritance") {
     Execute(store)(c)
-    assert(store("u").get.left.toOption.get === 1)
-    assert(store("v").get.left.toOption.get === 2)
-    assert(store("w").get.left.toOption.get === 3)
-    assert(store("x").get.left.toOption.get === 4)
-    assert(store("y").get.left.toOption.get === 5)
+    assert(store("u").get.left.toOption.get == 1)
+    assert(store("v").get.left.toOption.get == 2)
+    assert(store("w").get.left.toOption.get == 3)
+    assert(store("x").get.left.toOption.get == 4)
+    assert(store("y").get.left.toOption.get == 5)
   }
 }

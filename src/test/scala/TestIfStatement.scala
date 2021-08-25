@@ -20,8 +20,8 @@ class TestIfStatement extends AnyFunSuite {
   test("IfStatement") {
     Execute(store)(s)
     assert(store - "x" - "y" - "r" isEmpty)
-    assert(store("x").get.left.toOption.get === 7)
-    assert(store("y").get.left.toOption.get === 6)
-    assert(store("r").get.left.toOption.get === 0)
+    assert(store("x").get.left.toOption.get == 7)
+    assert(store("y").get.left.toOption.get == 6)
+    assert(store("r").get.left.toOption.get == 0)
   }
 }

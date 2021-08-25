@@ -43,7 +43,7 @@ object Cell {
   * An object (instance) has an optional superclass instance, a map from field
   * names to variables, and a map from method names to methods.
   */
-case class Instance(zuper: Option[Instance], fields: Map[String, Cell], methods: Map[String, Method]) {
+case class Instance(zuper: Option[Instance], fields: Map[String, Cell], methods: Map[String, Method]) derives CanEqual {
 
   def getField(name: String): Cell =
     // TODO: your job: replace this result with a meaningful field lookup

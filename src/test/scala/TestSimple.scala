@@ -32,13 +32,13 @@ class TestSimple extends AnyFunSuite {
 
   //  test("Simple") {
   //    assert(store - "q" - "r" isEmpty)
-  //    assert(store("q").get.left.toOption.get === 0)
-  //    assert(store("r").get.left.toOption.get === 0)
+  //    assert(store("q").get.left.toOption.get == 0)
+  //    assert(store("r").get.left.toOption.get == 0)
   //    Execute(store)(s)
   //    println(store)
   //    assert(store - "q" - "r" isEmpty)
-  //    assert(store("q").get.left.toOption.get === 60)
-  //    assert(store("r").get.toOption.get.getField("course1").get.right.get.getField("firstExamScore").get.left.toOption.get === 45)
+  //    assert(store("q").get.left.toOption.get == 60)
+  //    assert(store("r").get.toOption.get.getField("course1").get.right.get.getField("firstExamScore").get.left.toOption.get == 45)
   //  }
 
   test("Simple2") {
@@ -58,6 +58,6 @@ class TestSimple extends AnyFunSuite {
       ), Map())))
     )
     Execute(store)(s)
-    assert(store === store2)
+    assert(store.equals(store2)) // 
   }
 }

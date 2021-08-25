@@ -60,21 +60,21 @@ class TestRecursive extends AnyFunSuite {
     //     h -> Cell(Right(Instance(None,Map(value -> Cell(Left(2)), next -> Cell(Right(Instance(None,Map(value -> Cell(Left(3)), next -> Cell(Right(Instance(None,Map(value -> Cell(Left(5)), next -> Cell(Right(Instance(None,Map(value -> Cell(Left(7)), next -> Cell(Left(0))),Map())))),Map())))),Map())))),Map()))),
     //     s -> Cell(Left(17)))
     assert(store - "n" - "h" - "s" isEmpty)
-    assert(store("n").get.left.toOption.get === 0)
-    assert(store("s").get.left.toOption.get === 17)
+    assert(store("n").get.left.toOption.get == 0)
+    assert(store("s").get.left.toOption.get == 17)
     assert(store("h").
-      get.toOption.get.fields("value").get.left.toOption.get === 2)
-    assert(store("h").
-      get.toOption.get.fields("next").
-      get.toOption.get.fields("value").get.left.toOption.get === 3)
+      get.toOption.get.fields("value").get.left.toOption.get == 2)
     assert(store("h").
       get.toOption.get.fields("next").
-      get.toOption.get.fields("next").
-      get.toOption.get.fields("value").get.left.toOption.get === 5)
+      get.toOption.get.fields("value").get.left.toOption.get == 3)
     assert(store("h").
       get.toOption.get.fields("next").
       get.toOption.get.fields("next").
+      get.toOption.get.fields("value").get.left.toOption.get == 5)
+    assert(store("h").
       get.toOption.get.fields("next").
-      get.toOption.get.fields("value").get.left.toOption.get === 7)
+      get.toOption.get.fields("next").
+      get.toOption.get.fields("next").
+      get.toOption.get.fields("value").get.left.toOption.get == 7)
   }
 }

@@ -71,11 +71,11 @@ class TestWithInheritedFields extends AnyFunSuite {
 
   test("InheritedFields") {
     Execute(store)(c)
-    assert(store("u").get.left.toOption.get === 7)
-    assert(store("v").get.left.toOption.get === 8)
-    assert(store("w").get.left.toOption.get === 9)
-    assert(store("x").get.left.toOption.get === 13)
-    assert(store("y").get.left.toOption.get === 12)
-    assert(store("z").get.left.toOption.get === 13)
+    assert(store("u").get.left.toOption.get == 7)
+    assert(store("v").get.left.toOption.get == 8)
+    assert(store("w").get.left.toOption.get == 9)
+    assert(store("x").get.left.toOption.get == 13)
+    assert(store("y").get.left.toOption.get == 12)
+    assert(store("z").get.left.toOption.get == 13)
   }
 }
