@@ -5,7 +5,7 @@ package edu.luc.cs.laufer.cs371.miniool
 //      the presence of inheritance
 
 import SyntacticTypes.Method
-import RuntimeTypes._
+import RuntimeTypes.*
 
 object RuntimeTypes {
   /**
