@@ -11,7 +11,7 @@ class TestWithInheritedFields extends AnyFunSuite {
         def get() { this.value; }
     }
     class D extends C {
-    	var value // shadows but does not override the one from C
+        var value // shadows but does not override the one from C
         def set2(v) { this.value = v; }
         def get2() { this.value; }
         def set3(v) { super.value = v; }
