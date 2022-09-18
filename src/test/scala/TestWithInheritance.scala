@@ -3,7 +3,7 @@ package edu.luc.cs.laufer.cs371.miniool
 import scala.language.postfixOps
 import org.scalatest.funsuite.AnyFunSuite
 
-class TestWithInheritance extends AnyFunSuite {
+class TestWithInheritance extends AnyFunSuite:
 
   /*
     abstract class C {
@@ -73,4 +73,5 @@ class TestWithInheritance extends AnyFunSuite {
     assert(store("x").get.left.toOption.get == 4)
     assert(store("y").get.left.toOption.get == 5)
   }
-}
+
+end TestWithInheritance

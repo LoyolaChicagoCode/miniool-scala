@@ -2,7 +2,7 @@ package edu.luc.cs.laufer.cs371.miniool
 
 import org.scalatest.funsuite.AnyFunSuite
 
-class TestMyInt extends AnyFunSuite {
+class TestMyInt extends AnyFunSuite:
 
   /*
  * class myInt {
@@ -94,4 +94,5 @@ class TestMyInt extends AnyFunSuite {
     assert(store("u").get.left.toOption.get == 48)
     assert(store("v").get.left.toOption.get == 41)
   }
-}
+
+end TestMyInt

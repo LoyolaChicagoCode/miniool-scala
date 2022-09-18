@@ -2,7 +2,7 @@ package edu.luc.cs.laufer.cs371.miniool
 
 import SyntacticTypes.{Method, MethodBinding}
 
-object SyntacticTypes {
+object SyntacticTypes:
   /**
     * A method has a list of local variables and a body.
     */
@@ -11,7 +11,7 @@ object SyntacticTypes {
     * A method binding is an entry in a map from method names to methods.
     */
   type MethodBinding = (String, Method)
-}
+end SyntacticTypes
 
 /**
   * An abstract superclass for concrete Statement implementation classes.
@@ -49,13 +49,13 @@ case class If(guard: Statement, thenBranch: Statement, elseBranch: Statement) ex
   * syntactic sugar to make it look like a case class.
   */
 class New(val clazz: () => Clazz) extends Statement
-object New {
+object New:
   def apply(clazz: => Clazz) = new New(() => clazz)
   def unapply(s: Statement) = s match {
     case n: New => Some(n.clazz())
     case _      => None
   }
-}
+end New
 case class Selection(receiver: Statement, field: String) extends Statement
 case class Message(receiver: Statement, method: String, arguments: Statement*) extends Statement
 
@@ -65,7 +65,7 @@ case class Message(receiver: Statement, method: String, arguments: Statement*) e
   * Note that methods are defined in terms of their local variables
   * and their body; arguments are numbered instead of named.
   */
-case class Clazz(zuper: Option[Clazz], fields: Seq[String], methods: Seq[MethodBinding]) {
+case class Clazz(zuper: Option[Clazz], fields: Seq[String], methods: Seq[MethodBinding]):
   require(!fields.contains(null))
   require(!methods.contains(null))
 
@@ -74,4 +74,4 @@ case class Clazz(zuper: Option[Clazz], fields: Seq[String], methods: Seq[MethodB
   def this(fields: Seq[String], methods: Seq[MethodBinding]) = this(None, fields, methods)
   def this(fields: String*) = this(None, fields, Seq())
   def this() = this(None, Seq(), Seq())
-}
+end Clazz

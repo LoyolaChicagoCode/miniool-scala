@@ -2,7 +2,7 @@ package edu.luc.cs.laufer.cs371.miniool
 
 import org.scalatest.funsuite.AnyFunSuite
 
-class TestFibonacci extends AnyFunSuite {
+class TestFibonacci extends AnyFunSuite:
 
   /*
  * class myFib {
@@ -81,4 +81,5 @@ class TestFibonacci extends AnyFunSuite {
     assert(store("w").get.left.toOption.get == 21)
     assert(store("u").get.left.toOption.get == 2584)
   }
-}
+
+end TestFibonacci

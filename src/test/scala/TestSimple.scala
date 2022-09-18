@@ -2,7 +2,7 @@ package edu.luc.cs.laufer.cs371.miniool
 
 import org.scalatest.funsuite.AnyFunSuite
 
-class TestSimple extends AnyFunSuite {
+class TestSimple extends AnyFunSuite:
 
   val studentCourseRecord = new Clazz("firstExamScore", "secondExamScore", "totalScore")
   val studentSemRecord = new Clazz("course1", "course2")
@@ -60,4 +60,5 @@ class TestSimple extends AnyFunSuite {
     Execute(store)(s)
     assert(store.equals(store2)) // 
   }
-}
+
+end TestSimple

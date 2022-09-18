@@ -2,7 +2,7 @@ package edu.luc.cs.laufer.cs371.miniool
 
 import org.scalatest.funsuite.AnyFunSuite
 
-class TestWithInheritedFields extends AnyFunSuite {
+class TestWithInheritedFields extends AnyFunSuite:
 
   /*
     class C {
@@ -78,4 +78,5 @@ class TestWithInheritedFields extends AnyFunSuite {
     assert(store("y").get.left.toOption.get == 12)
     assert(store("z").get.left.toOption.get == 13)
   }
-}
+
+end TestWithInheritedFields

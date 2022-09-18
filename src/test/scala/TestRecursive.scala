@@ -3,7 +3,7 @@ package edu.luc.cs.laufer.cs371.miniool
 import org.scalatest.funsuite.AnyFunSuite
 import scala.language.postfixOps
 
-class TestRecursive extends AnyFunSuite {
+class TestRecursive extends AnyFunSuite:
 
   val store = Map[String, Cell](
     "n" -> Cell(0),
@@ -77,4 +77,5 @@ class TestRecursive extends AnyFunSuite {
       get.toOption.get.fields("next").
       get.toOption.get.fields("value").get.left.toOption.get == 7)
   }
-}
+
+end TestRecursive

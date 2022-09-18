@@ -2,7 +2,7 @@ package edu.luc.cs.laufer.cs371.miniool
 
 import org.scalatest.funsuite.AnyFunSuite
 
-class TestWithMethods extends AnyFunSuite {
+class TestWithMethods extends AnyFunSuite:
 
   /*
   class MyInt {
@@ -102,4 +102,5 @@ class TestWithMethods extends AnyFunSuite {
     assert(store("i").get.left.toOption.get == 7)
     assert(store("j").get.left.toOption.get == 6)
   }
-}
+
+end TestWithMethods

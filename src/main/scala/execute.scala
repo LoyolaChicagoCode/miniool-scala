@@ -7,7 +7,7 @@ package edu.luc.cs.laufer.cs371.miniool
 import SyntacticTypes.Method
 import RuntimeTypes.*
 
-object RuntimeTypes {
+object RuntimeTypes:
   /**
     * A run-time value is either a number or an Instance (object).
     */
@@ -21,29 +21,29 @@ object RuntimeTypes {
     * along with the method itself.
     */
   type ScopedMethod = (Instance, (Seq[String], Statement))
-}
+end RuntimeTypes
 
 /**
   * A cell for storing a value (either a number or an object).
   */
-case class Cell(var value: Value) {
+case class Cell(var value: Value):
   def get = value
   def set(value: Value) = { this.value = value; this }
-}
+end Cell
 
 /**
   * A companion object defining a useful Cell instance.
   */
-object Cell {
+object Cell:
   def apply(i: Int): Cell = Cell(Left(i)) // Left -> number, Right -> object
   val NULL = Cell(0)
-}
+end Cell
 
 /**
   * An object (instance) has an optional superclass instance, a map from field
   * names to variables, and a map from method names to methods.
   */
-case class Instance(zuper: Option[Instance], fields: Map[String, Cell], methods: Map[String, Method]) derives CanEqual {
+case class Instance(zuper: Option[Instance], fields: Map[String, Cell], methods: Map[String, Method]) derives CanEqual:
 
   def getField(name: String): Cell =
     // TODO: your job: replace this result with a meaningful field lookup
@@ -52,16 +52,16 @@ case class Instance(zuper: Option[Instance], fields: Map[String, Cell], methods:
   def getScopedMethod(name: String): ScopedMethod =
     // TODO: your job: replace this result with a meaningful method lookup
     (Instance(None, Map(), Map()), (Seq(), Constant(0)))
-}
+end Instance
 
 /**
   * An interpreter for expressions and statements.
   * It evaluates a Statement down to a Cell (l-value) containing the result.
   * If desired, the result (r-value) can be accessed in an additional step.
   */
-object Execute {
+object Execute:
 
-  def apply(store: Store)(s: Statement): Cell = s match {
+  def apply(store: Store)(s: Statement): Cell = s match
     case Constant(value)   => Cell(Left(value))
     case Plus(left, right) => binaryOperation(store, left, right, _ + _)
     case Variable(name)    => store(name)
@@ -71,14 +71,12 @@ object Execute {
       lvalue.set(rvalue.get)
     case Sequence(statements @ _*) =>
       statements.foldLeft(Cell.NULL)((c, s) => apply(store)(s))
-    case While(guard, body) => {
+    case While(guard, body) =>
       var gvalue = apply(store)(guard)
-      while gvalue.get.isRight || gvalue.get.left.toOption.get != 0 do {
+      while gvalue.get.isRight || gvalue.get.left.toOption.get != 0 do
         apply(store)(body)
         gvalue = apply(store)(guard)
-      }
       Cell.NULL
-    }
     case New(Clazz(zuper, fields, methods)) =>
       // create an object based on the list of field names and methods
       val fs = Map(fields.map(field => (field, Cell(0))): _*)
@@ -91,11 +89,10 @@ object Execute {
       val rec = apply(store)(receiver)
       // if this selection is on the receiver of the current method,
       // then look for the field in the static scope of the method
-      if !store.contains("this") || rec.get.toOption.get != store("this").get.toOption.get then {
+      if !store.contains("this") || rec.get.toOption.get != store("this").get.toOption.get then
         rec.get.toOption.get.getField(field)
-      } else {
+      else
         store("scope").get.toOption.get.getField(field)
-      }
     case Message(receiver, method, arguments @ _*) =>
       // evaluate receiver expression to a Cell containing an Instance
       val rec = apply(store)(receiver)
@@ -119,11 +116,10 @@ object Execute {
       // finally execute the resulting Statement in the augmented store
       // (note that this automatically returns the result if there is one)
       apply(storeWithBindings)(meth)
-  }
 
-  def binaryOperation(store: Store, left: Statement, right: Statement, operator: (Int, Int) => Int): Cell = {
+  def binaryOperation(store: Store, left: Statement, right: Statement, operator: (Int, Int) => Int): Cell =
     val l: Int = apply(store)(left).get.left.toOption.get
     val r: Int = apply(store)(right).get.left.toOption.get
     Cell(Left(operator(l, r)))
-  }
-}
+
+end Execute

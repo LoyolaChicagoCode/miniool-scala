@@ -3,7 +3,7 @@ package edu.luc.cs.laufer.cs371.miniool
 import org.scalatest.funsuite.AnyFunSuite
 import scala.language.postfixOps
 
-class TestIfStatement extends AnyFunSuite {
+class TestIfStatement extends AnyFunSuite:
 
   val store = Map[String, Cell](
     "x" -> Cell(2),
@@ -24,4 +24,4 @@ class TestIfStatement extends AnyFunSuite {
     assert(store("y").get.left.toOption.get == 6)
     assert(store("r").get.left.toOption.get == 0)
   }
-}
+end TestIfStatement
