@@ -51,10 +51,9 @@ case class If(guard: Statement, thenBranch: Statement, elseBranch: Statement) ex
 class New(val clazz: () => Clazz) extends Statement
 object New:
   def apply(clazz: => Clazz) = new New(() => clazz)
-  def unapply(s: Statement) = s match {
+  def unapply(s: Statement) = s match
     case n: New => Some(n.clazz())
     case _      => None
-  }
 end New
 case class Selection(receiver: Statement, field: String) extends Statement
 case class Message(receiver: Statement, method: String, arguments: Statement*) extends Statement
